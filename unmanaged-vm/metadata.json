@@ -1,0 +1,7 @@
+{
+  "itemDisplayName": "Create an unmanaged vm",
+  "description": "Creating an unmanaged vm for back compat testing.",
+  "summary": "For now the vhd uri is hardcoded to an existing uri",
+  "githubUsername": "grwann",
+  "dateUpdated": "2017-05-19"
+}
