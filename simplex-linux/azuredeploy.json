@@ -14,12 +14,15 @@
         "description": "Password for the Virtual Machine."
       }
     },
+    "virtualMachineName": {
+        "type": "string"
+    },
     "dnsLabelPrefix": {
       "type": "string",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
-    },
+    },    
     "ubuntuOSVersion": {
       "type": "string",
       "defaultValue": "16.04.0-LTS",
@@ -38,16 +41,15 @@
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'salinuxvm')]",
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
-    "nicName": "myVMNic",
+    "nicName": "[concat(parameters('virtualMachineName'), 'nic')]",
     "addressPrefix": "10.0.0.0/16",
-    "subnetName": "Subnet",
+    "subnetName": "[concat(parameters('virtualMachineName'), 'subnet')]",
     "subnetPrefix": "10.0.0.0/24",
     "storageAccountType": "Standard_LRS",
-    "publicIPAddressName": "myPublicIP",
+    "publicIPAddressName": "[concat(parameters('virtualMachineName'), 'ip')]",
     "publicIPAddressType": "Dynamic",
-    "vmName": "MyUbuntuVM",
     "vmSize": "Standard_A1",
-    "virtualNetworkName": "MyVNET",
+    "virtualNetworkName": "[concat(parameters('virtualMachineName'), 'vnet')]",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
   },
@@ -125,7 +127,7 @@
     {
       "apiVersion": "2016-04-30-preview",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[variables('vmName')]",
+      "name": "[parameters('virtualMachineName')]",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
@@ -142,7 +144,7 @@
                   "uri": "https://agracesysprep528.blob.core.windows.net/uploads/win-vm_ceab6a52-dc13-4366-9.vhd"
               },
               "osType": "Linux",
-              "name": "[variables('vmName')]"		
+              "name": "[parameters('virtualMachineName')]"		
           }
         },
         "networkProfile": {
