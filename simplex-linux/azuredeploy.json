@@ -152,7 +152,7 @@
               "vhd": {
                   "uri": "https://agracesysprep528.blob.core.windows.net/uploads/win-vm_ceab6a52-dc13-4366-9.vhd"
               },
-              "name": "[parameters('virtualMachineName')]"		
+              "name": "[variables('vmName')]"		
           },
           "dataDisks": [
             {
