@@ -3,13 +3,15 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Southeast Asia"
         },
         "virtualMachineName": {
             "type": "string"
         },
         "virtualMachineSize": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Standard_DS1_v2"
         },
         "adminUsername": {
             "type": "string"
@@ -33,7 +35,8 @@
             "type": "string"
         },
         "publicIpAddressType": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Dynamic"
         }
     },
     "variables": {
