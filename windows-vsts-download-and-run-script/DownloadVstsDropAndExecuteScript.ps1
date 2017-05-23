@@ -14,7 +14,11 @@ param(
     [string] $vstsProjectUri,
 
     [Parameter (Mandatory=$True)]
-    [string] $pathToScript
+    [string] $pathToScript,
+
+    [Parameter (Mandatory=$False)]
+    [AllowEmptyString()]
+    [string] $scriptArguments
 )
 
 Set-PSDebug -Strict
@@ -40,10 +44,6 @@ function GetBuildDefinitionId
     try
     {
         Write-Host "GetBuildDefinitionId from $buildDefinitionUri"
-        Write-Host "hi grace!  headers are $headers in case you wanted to know"
-	$patVal = $headers["Download_VSTS_Drop_and_Run_Script.PersonalAccessToken"]
-	Write-Host "$patVal"
-	
         $buildDef = Invoke-RestMethod -Uri $buildDefinitionUri -Headers $headers -method Get -ErrorAction Stop
         return $buildDef.value.id
     }
@@ -130,7 +130,7 @@ function RunScript
 
     if (Test-Path $scriptPath -PathType Leaf)
     {
-        & $scriptPath 
+        Invoke-Expression  "& `"$scriptPath`" $scriptArguments"
     }
 }
 
