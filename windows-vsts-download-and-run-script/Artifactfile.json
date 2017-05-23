@@ -16,7 +16,7 @@
             "displayName": "Build Definition Name",
             "description": "Name of the build definition to be retrieved"
         },
-        "PersonalAccessToken": {
+        "personalAccessToken": {
             "type": "securestring",
             "displayName": "Personal Access Token",
             "description": "Personal Access Token for accessing VSTS build"
@@ -28,6 +28,6 @@
         }
     },
     "runCommand": {
-        "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass -File DownloadVstsDropAndExecuteScript.ps1', ' -accessToken ', parameters('PersonalAccessToken'), ' -buildDefinitionName ', parameters('buildDefinitionName'), ' -vstsProjectUri ', parameters('vstsProjectUri'), ' -pathToScript ', parameters('pathToScript'))]"
+        "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass -File DownloadVstsDropAndExecuteScript.ps1', ' -accessToken ', parameters('personalAccessToken'), ' -buildDefinitionName ', parameters('buildDefinitionName'), ' -vstsProjectUri ', parameters('vstsProjectUri'), ' -pathToScript ', parameters('pathToScript'))]"
     }
 }
