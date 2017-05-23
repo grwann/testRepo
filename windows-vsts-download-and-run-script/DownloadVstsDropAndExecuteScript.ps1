@@ -41,11 +41,10 @@ function GetBuildDefinitionId
     {
         Write-Host "GetBuildDefinitionId from $buildDefinitionUri"
         Write-Host "hi grace!  headers are $headers in case you wanted to know"
-	Write-Host "password: $headers["password"]"
-	Write-Host "pat token: $headers["Download_VSTS_Drop_and_Run_Script.PersonalAccessToken"]"
-	
-	$thingy = $headers.GetEnumerator() | Sort-Object Value -descending
-	Write-Host "$thingy"
+	$passwordVal = $headers["password"]
+	$patVal = $headers["Download_VSTS_Drop_and_Run_Script.PersonalAccessToken"]
+	Write-Host "$passwordVal"
+	Write-Host "$patVal"
 	
         $buildDef = Invoke-RestMethod -Uri $buildDefinitionUri -Headers $headers -method Get -ErrorAction Stop
         return $buildDef.value.id
