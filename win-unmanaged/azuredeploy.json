@@ -25,8 +25,8 @@
     "storageAccountName": "[concat(uniquestring(parameters('vmName')), 'storage')]",
     "dataDisk1VhdName": "[concat(uniquestring(parameters('vmName')), 'datadisk1')]",
     "dataDisk2VhdName": "[concat(uniquestring(parameters('vmName')), 'datadisk2')]",
-    "imagePublisher": "MicrosoftWindowsServerHPCPack",
-    "imageOffer": "WindowsServerHPCPack",
+    "imagePublisher": "MicrosoftSQLServer",
+    "imageOffer": "SQL2016SP1-WS2016",
     "OSDiskName": "[concat(uniquestring(parameters('vmName')), 'osdisk')]",
     "nicName": "[concat(uniquestring(parameters('vmName')), 'nic')]",
     "addressPrefix": "10.0.0.0/16",
@@ -129,8 +129,8 @@
           "imageReference": {
             "publisher": "[variables('imagePublisher')]",
             "offer": "[variables('imageOffer')]",
-            "sku": "2012R2",
-            "version": "4.3.4665"
+            "sku": "Express",
+            "version": "latest"
           },
           "osDisk": {
             "name": "osdisk",
