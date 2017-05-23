@@ -1,5 +1,5 @@
 {
-  "itemDisplayName": "UNMANAGED - linux",
+  "itemDisplayName": "UNMANAGED - linux vm",
   "description": "Creates a linux unmanaged vm but you still have to do some stuff to make it work in lab.",
   "summary": "Some template I found that actually creates an unmanaged vm.",
   "githubUsername": "grwann",
