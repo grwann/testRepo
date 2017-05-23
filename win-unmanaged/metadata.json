@@ -1,5 +1,5 @@
 {
-  "itemDisplayName": "UNMANAGED - a windows vm",
+  "itemDisplayName": "UNMANAGED - windows vm",
   "description": "Creates a windows unmanaged vm but you still have to do some stuff to make it work in lab.",
   "summary": "Some template I found that actually creates an unmanaged vm.",
   "githubUsername": "grwann",
