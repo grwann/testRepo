@@ -1,0 +1,7 @@
+{
+  "itemDisplayName": "UNMANAGED - Red Hat Enterprise Linux VM (RHEL 7.2 or RHEL 6.7)",
+  "description": "Creates a linux unmanaged vm but you still have to do some stuff to make it work in lab.",
+  "summary": "Some template I found that actually creates an unmanaged vm.",
+  "githubUsername": "grwann",
+  "dateUpdated": "2017-05-22"
+}
