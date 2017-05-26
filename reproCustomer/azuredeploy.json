@@ -93,9 +93,6 @@
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2016-09-01",
             "location": "[parameters('location')]",
-            "dependsOn": [
-                "[concat('Microsoft.Network/publicIpAddresses/', parameters('publicIpAddressName'))]"
-            ],
             "properties": {
                 "ipConfigurations": [
                     {
