@@ -106,7 +106,7 @@
                             },
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIpAddress": {
-                                "id": "[resourceId('grace-testSysprepFlowRG120101','Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
+                                "id": "[resourceId('grace-testsysprepflow-plz-418003','Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
                             }
                         }
                     }
