@@ -18,7 +18,8 @@
             "defaultValue": "grwann"
         },
         "virtualNetworkName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Dtlgrace-testSysprepFlow"
         },
         "networkInterfaceName": {
             "type": "string"
@@ -27,7 +28,8 @@
             "type": "securestring"
         },
         "subnetName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Dtlgrace-testSysprepFlowSubnet"
         },
         "publicIpAddressName": {
             "type": "string"
