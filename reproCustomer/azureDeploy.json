@@ -15,7 +15,7 @@
         },
         "adminUsername": {
             "type": "string",
-            "grwann"
+            "defaultValue": "grwann"
         },
         "virtualNetworkName": {
             "type": "string"
