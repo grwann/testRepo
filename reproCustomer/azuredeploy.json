@@ -33,7 +33,7 @@
         },
         "publicIpAddressName": {
             "type": "string",
-            "devaultValue": "makeapip"
+            "defaultValue": "makeapip"
         },
         "publicIpAddressType": {
             "type": "string",
