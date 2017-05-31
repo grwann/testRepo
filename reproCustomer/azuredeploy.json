@@ -30,14 +30,6 @@
         "subnetName": {
             "type": "string",
             "defaultValue": "Dtlgrace-testSysprepFlowSubnet"
-        },
-        "publicIpAddressName": {
-            "type": "string",
-            "defaultValue": "makeapip"
-        },
-        "publicIpAddressType": {
-            "type": "string",
-            "defaultValue": "Dynamic"
         }
     },
     "variables": {
@@ -102,10 +94,7 @@
                             "subnet": {
                                 "id": "[variables('subnetRef')]"
                             },
-                            "privateIPAllocationMethod": "Dynamic",
-                            "publicIpAddress": {
-                                "id": "[resourceId('grace-testSysprepFlow-makeapip4-633486','Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
-                            }
+                            "privateIPAllocationMethod": "Dynamic"
                         }
                     }
                 ]
