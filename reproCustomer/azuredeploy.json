@@ -17,9 +17,9 @@
             "type": "string",
             "defaultValue": "grwann"
         },
-        "virtualNetworkName": {
+        "labVirtualNetwork": {
             "type": "string",
-            "defaultValue": "Dtlgrace-testSysprepFlow"
+            "defaultValue": ""
         },
         "networkInterfaceName": {
             "type": "string"
@@ -27,13 +27,17 @@
         "adminPassword": {
             "type": "securestring"
         },
-        "subnetName": {
+        "labSubnetName": {
             "type": "string",
-            "defaultValue": "Dtlgrace-testSysprepFlowSubnet"
+            "defaultValue": ""
+        },
+        "resourceGroupOfLab": {
+            "type": "string",
+            "defaultValue": ""
         }
     },
     "variables": {
-        "vnetId": "[resourceId('grace-testSysprepFlowRG120101','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+        "vnetId": "[resourceId(parameters('resourceGroupOfLab'),'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
     },
     "resources": [
