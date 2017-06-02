@@ -2,10 +2,22 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "resourceGroupOfLab": {
+            "type": "string",
+            "defaultValue": ""
+        },        
         "location": {
             "type": "string",
             "defaultValue": "Southeast Asia"
         },
+        "labVirtualNetwork": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "labSubnetName": {
+            "type": "string",
+            "defaultValue": ""
+        },        
         "virtualMachineName": {
             "type": "string"
         },
@@ -17,27 +29,15 @@
             "type": "string",
             "defaultValue": "grwann"
         },
-        "labVirtualNetwork": {
-            "type": "string",
-            "defaultValue": ""
-        },
         "networkInterfaceName": {
             "type": "string"
         },
         "adminPassword": {
             "type": "securestring"
-        },
-        "labSubnetName": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "resourceGroupOfLab": {
-            "type": "string",
-            "defaultValue": ""
         }
     },
     "variables": {
-        "vnetId": "[resourceId(parameters('resourceGroupOfLab'),'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+        "vnetId": "[resourceId(parameters('resourceGroupOfLab'),'Microsoft.Network/virtualNetworks', parameters('labVirtualNetwork'))]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
     },
     "resources": [
