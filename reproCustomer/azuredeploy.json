@@ -29,16 +29,16 @@
             "type": "string",
             "defaultValue": "grwann"
         },
-        "networkInterfaceName": {
-            "type": "string"
-        },
         "adminPassword": {
             "type": "securestring"
-        }
+        },
+        "networkInterfaceName": {
+            "type": "string"
+        }        
     },
     "variables": {
         "vnetId": "[resourceId(parameters('resourceGroupOfLab'),'Microsoft.Network/virtualNetworks', parameters('labVirtualNetwork'))]",
-        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('labSubnetName'))]"
     },
     "resources": [
         {
