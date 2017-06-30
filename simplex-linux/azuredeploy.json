@@ -14,15 +14,12 @@
         "description": "Password for the Virtual Machine."
       }
     },
-    "virtualMachineName": {
-        "type": "string"
-    },
     "dnsLabelPrefix": {
       "type": "string",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
-    },    
+    },
     "ubuntuOSVersion": {
       "type": "string",
       "defaultValue": "16.04.0-LTS",
@@ -41,15 +38,16 @@
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'salinuxvm')]",
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
-    "nicName": "[concat(parameters('virtualMachineName'), 'nic')]",
+    "nicName": "myVMNic",
     "addressPrefix": "10.0.0.0/16",
-    "subnetName": "[concat(parameters('virtualMachineName'), 'subnet')]",
+    "subnetName": "Subnet",
     "subnetPrefix": "10.0.0.0/24",
     "storageAccountType": "Standard_LRS",
-    "publicIPAddressName": "[concat(parameters('virtualMachineName'), 'ip')]",
+    "publicIPAddressName": "myPublicIP",
     "publicIPAddressType": "Dynamic",
+    "vmName": "MyUbuntuVM",
     "vmSize": "Standard_A1",
-    "virtualNetworkName": "[concat(parameters('virtualMachineName'), 'vnet')]",
+    "virtualNetworkName": "MyVNET",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
   },
@@ -57,7 +55,7 @@
     {
       "type": "Microsoft.Storage/storageAccounts",
       "name": "[variables('storageAccountName')]",
-      "apiVersion": "2016-01-01",
+      "apiVersion": "2017-06-01",
       "location": "[resourceGroup().location]",
       "sku": {
         "name": "[variables('storageAccountType')]"
@@ -66,7 +64,7 @@
       "properties": {}
     },
     {
-      "apiVersion": "2016-09-01",
+      "apiVersion": "2017-04-01",
       "type": "Microsoft.Network/publicIPAddresses",
       "name": "[variables('publicIPAddressName')]",
       "location": "[resourceGroup().location]",
@@ -78,7 +76,7 @@
       }
     },
     {
-      "apiVersion": "2016-09-01",
+      "apiVersion": "2017-04-01",
       "type": "Microsoft.Network/virtualNetworks",
       "name": "[variables('virtualNetworkName')]",
       "location": "[resourceGroup().location]",
@@ -99,7 +97,7 @@
       }
     },
     {
-      "apiVersion": "2016-09-01",
+      "apiVersion": "2017-04-01",
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[variables('nicName')]",
       "location": "[resourceGroup().location]",
@@ -125,9 +123,9 @@
       }
     },
     {
-      "apiVersion": "2016-04-30-preview",
+      "apiVersion": "2017-03-30",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[parameters('virtualMachineName')]",
+      "name": "[variables('vmName')]",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
@@ -137,15 +135,28 @@
         "hardwareProfile": {
           "vmSize": "[variables('vmSize')]"
         },
+        "osProfile": {
+          "computerName": "[variables('vmName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]"
+        },
         "storageProfile": {
+          "imageReference": {
+            "publisher": "[variables('imagePublisher')]",
+            "offer": "[variables('imageOffer')]",
+            "sku": "[parameters('ubuntuOSVersion')]",
+            "version": "latest"
+          },
           "osDisk": {
-              "createOption": "Attach",
-              "vhd": {
-                  "uri": "https://agracesysprep528.blob.core.windows.net/uploads/win-vm_ceab6a52-dc13-4366-9.vhd"
-              },
-              "osType": "Linux",
-              "name": "[parameters('virtualMachineName')]"		
-          }
+            "createOption": "FromImage"
+          },
+          "dataDisks": [
+            {
+              "diskSizeGB": "1023",
+              "lun": 0,
+              "createOption": "Empty"
+            }
+          ]
         },
         "networkProfile": {
           "networkInterfaces": [
