@@ -1,0 +1,48 @@
+{  
+   "$schema":"http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+   "contentVersion":"1.0.0.0",
+   "parameters":{  
+      "siteName":{  
+         "type":"string",
+         "metadata":{  
+            "description":"Name of azure web app"
+         }
+      }
+   },
+   "variables":{  
+      "hostingPlanName":"[concat(parameters('siteName'), 'serviceplan')]"
+   },
+   "resources":[  
+      {  
+         "apiVersion":"2016-09-01",
+         "name":"[variables('hostingPlanName')]",
+         "type":"Microsoft.Web/serverfarms",
+         "location":"[resourceGroup().location]",
+         "properties":{  
+            "name":"[variables('hostingPlanName')]",
+            "workerSizeId":"1",
+            "reserved":true,
+            "numberOfWorkers":0,
+            "hostingEnvironment":""
+         },
+         "sku":{  
+            "Tier":"Standard",
+            "Name":"S1"
+         }
+      },
+      {  
+         "apiVersion":"2015-02-01",
+         "name":"[parameters('siteName')]",
+         "type":"Microsoft.Web/sites",
+         "location":"[resourceGroup().location]",
+         "dependsOn":[  
+            "[concat('Microsoft.Web/serverfarms/', variables('hostingPlanName'))]"
+         ],
+         "properties":{  
+            "name":"[parameters('siteName')]",
+            "serverFarmId":"[variables('hostingPlanName')]",
+            "hostingEnvironment":""
+         }
+      }
+   ]
+}
