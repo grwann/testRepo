@@ -6,11 +6,5 @@
     "iconUri": "https://chocolatey.org/content/packageimages/SublimeText3.PackageControl.2.0.0.20140915.png",
     "runCommand": {
       "commandToExecute": "cmd /c echo Running artifact to test post-deploy actions"
-    },
-    "postDeployActions": [
-        {
-            "action": "waitForShutdown",
-            "delayStart": 15
-        }
-    ]
+    }
   }
