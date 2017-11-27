@@ -6,6 +6,6 @@
     "targetOsType": "Linux",
 	
   "runCommand": {
-    "commandToExecute": "['sh linux_install_jdk.sh']"
+    "commandToExecute": "['sh sleep.sh']"
   }
 }
