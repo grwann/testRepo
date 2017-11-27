@@ -1,12 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
     "title": "Sleeeeeep",
-    "description": "Install Java Development Kit on Debian-based and Red Hat based distributions.",
-    "tags": [
-      "JDK",
-      "Linux",
-      "JAVA"
-    ],
+    "description": "Make artifact sleep.",
     "iconUri": "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/128px-Java_programming_language_logo.svg.png",
     "targetOsType": "Linux",
 	
