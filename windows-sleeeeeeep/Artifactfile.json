@@ -1,6 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
-    "title": "make artifact sleep for a little bit",
+    "title": "sleeeeeep",
     "description": "Test post-deploy waitForShutdown with 15 second delay",
     "targetOsType": "Windows",
     "runCommand": {
