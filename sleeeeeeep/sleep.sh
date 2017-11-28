@@ -4,6 +4,6 @@
 
 echo "grace test"
 
-sleep 14400
+sleep 1000
 
 echo "done sleeping"
