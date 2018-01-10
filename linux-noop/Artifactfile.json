@@ -1,11 +1,11 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
-    "title": "Sleeeeeep",
-    "description": "Make artifact sleep.",
+    "title": "No-op for Linux",
+    "description": "Does nothing.",
     "iconUri": "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/128px-Java_programming_language_logo.svg.png",
     "targetOsType": "Linux",
 	
   "runCommand": {
-    "commandToExecute": "['sh sleep.sh']"
+    "commandToExecute": "['sh noop.sh']"
   }
 }
