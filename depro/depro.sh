@@ -16,8 +16,7 @@ main () {
         elif [ -n "$isZypper" ] ; then
             zypper install -y at > /dev/null
         else
-            echo 'OS type not supported' #> /dev/null 2>&1
-            exit 1
+            echo 'Must be CoreOS' #> /dev/null 2>&1
         fi
 
         # Make sure that the atd service is running to cover our dependency below.
