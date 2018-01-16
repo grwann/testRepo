@@ -28,7 +28,7 @@ main () {
         waagentPath=$(command -v waagent)
         # trim the last 8 characters
         waagentDir=${waagentPath%????????}
-        echo "$waagentPath -force -deprovision+user || /usr/share/oem/bin/waagent -force -deprovision+user > /tmp/depro.out 2> /tmp/depro.err && poweroff" | at now + 1 minute > /dev/null 2>&1        
+        echo "($waagentPath -force -deprovision+user || /usr/share/oem/bin/waagent -force -deprovision+user) > /tmp/depro.out 2> /tmp/depro.err && poweroff" | at now + 1 minute > /dev/null 2>&1        
         exit 0
     } || { # catch
         exit 1
