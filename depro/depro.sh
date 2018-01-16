@@ -29,7 +29,7 @@ main () {
         # trim the last 8 characters
         waagentDir=${waagentPath%????????}
         echo "($waagentPath -force -deprovision+user 
-            || (/usr/share/oem/python/bin/python -u /usr/share/oem/bin/waagent -force -deprovision+user)) 
+            || (/usr/share/oem/python/bin/python -u /usr/share/oem/bin/waagent -force -deprovision+user)) #for coreOS
             > /tmp/depro.out 2> /tmp/depro.err && poweroff" 
             | at now + 1 minute > /dev/null 2>&1        
         exit 0
