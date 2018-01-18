@@ -14,6 +14,9 @@ main () {
             yum install -y at > /dev/null
         elif [ -n "$isZypper" ] ; then
             zypper install -y at > /dev/null
+        else
+            echo 'OS type not supported' #> /dev/null 2>&1
+            exit 1
         fi
 
         # Make sure that the atd service is running to cover our dependency below.
@@ -28,10 +31,7 @@ main () {
         waagentPath=$(command -v waagent)
         # trim the last 8 characters
         waagentDir=${waagentPath%????????}
-        echo "($waagentPath -force -deprovision+user 
-            || (/usr/share/oem/python/bin/python -u /usr/share/oem/bin/waagent -force -deprovision+user)) #for coreOS
-            > /tmp/depro.out 2> /tmp/depro.err && poweroff" 
-            | at now + 1 minute > /dev/null 2>&1        
+        echo "cd $waagentDir && waagent -force -deprovision+user > /tmp/depro.out 2> /tmp/depro.err && poweroff" | at now + 1 minute > /dev/null 2>&1        
         exit 0
     } || { # catch
         exit 1
