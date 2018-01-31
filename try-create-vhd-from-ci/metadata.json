@@ -1,0 +1,7 @@
+{
+  "itemDisplayName": "UNMANAGED - windows vm with disks already attached",
+  "description": "Creates a windows unmanaged vm but you still have to do some stuff to make it work in lab.",
+  "summary": "Some template I found that actually creates an unmanaged vm.  Attaches some disks for you",
+  "githubUsername": "grwann",
+  "dateUpdated": "2017-05-22"
+}
