@@ -19,13 +19,13 @@
       "metadata": {
         "description": "Name for the Virtual Machine."
       }
-    }
-  },
-  "managedImageId": {
-    "type": "string",
-    "metadata": {
-      "description": "Resource id of your managed image"
-    }
+    },
+    "managedImageId": {
+      "type": "string",
+      "metadata": {
+        "description": "Resource id of your managed image"
+      }
+    },
   },
   "variables": {
     "storageAccountName": "[concat(uniquestring(parameters('vmName')), 'storage')]",
