@@ -20,10 +20,10 @@
         "description": "Name for the Virtual Machine."
       }
     },
-    "managedImageId": {
+    "imageName": {
       "type": "string",
       "metadata": {
-        "description": "Resource id of your managed image"
+        "description": "Name of your managed image"
       }
     },
   },
@@ -133,7 +133,7 @@
         },
         "storageProfile": {
           "imageReference": {
-            "id": "[parameters('managedImageId')]"
+            "id": "[resourceId('Microsoft.Compute/images', 'imageName')]"
           },
           "osDisk": {
             "name": "osdisk",
