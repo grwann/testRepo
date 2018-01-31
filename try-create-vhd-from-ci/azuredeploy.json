@@ -21,6 +21,12 @@
       }
     }
   },
+  "managedImageId": {
+    "type": "string",
+    "metadata": {
+      "description": "Resource id of your managed image"
+    }
+  },
   "variables": {
     "storageAccountName": "[concat(uniquestring(parameters('vmName')), 'storage')]",
      "dataDisk1VhdName": "[concat(uniquestring(parameters('vmName')), 'datadisk1')]",
@@ -127,10 +133,7 @@
         },
         "storageProfile": {
           "imageReference": {
-            "publisher": "[variables('imagePublisher')]",
-            "offer": "[variables('imageOffer')]",
-            "sku": "Express",
-            "version": "latest"
+            "id": "[parameters('managedImageId')]"
           },
           "osDisk": {
             "name": "osdisk",
