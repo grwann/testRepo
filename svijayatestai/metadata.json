@@ -1,8 +1,7 @@
 {
-  "itemDisplayName": "Deploy a devtestlab and ai",
-  "icon": "ubuntu",
+  "itemDisplayName": "Deploy a devtestlab and ai",  
   "description": "This template allows you to deploy dev test lab with AI.",
   "summary": " "This template allows you to deploy dev test lab with AI.",
-  "githubUsername": "bmoore-msft",
+  "githubUsername": "sandhyamv",
   "dateUpdated": "2016-12-15"
 }

@@ -12,20 +12,7 @@
 	"variables": {
 		"labVirtualNetworkName": "[concat('Dtl', parameters('newLabName'))]"
 	},
-	"resources": [{
-			"type": "Microsoft.DevTestLab/labs",
-			"name": "[parameters('newLabName')]",
-			"apiVersion": "2017-04-26-preview",
-			"location": "[resourceGroup().location]",
-			"resources": [{
-				"type": "virtualNetworks",
-				"name": "[variables('labVirtualNetworkName')]",
-				"apiVersion": "2017-04-26-preview",
-				"dependsOn": [
-					"[resourceId('Microsoft.DevTestLab/labs', parameters('newLabName'))]"
-				]
-			}]
-		},
+	"resources": [
 		{
 			"name": "[parameters('newLabName')]",
 			"type": "Microsoft.Insights/components",
