@@ -1,7 +1,7 @@
 {
-  "itemDisplayName": "Deploy a devtestlab and ai",  
-  "description": "This template allows you to deploy dev test lab with AI.",
-  "summary": " "This template allows you to deploy dev test lab with AI.",
-  "githubUsername": "sandhyamv",
-  "dateUpdated": "2016-12-15"
+  "itemDisplayName": "Sandhya test", 
+  "description": "This template allows you to deploy a simple Linux VM using a few different options for the Ubuntu version, using the latest patched version. This will deploy a A1 size VM in the resource group location and return the FQDN of the VM.",
+  "summary": "This template takes a minimum amount of parameters and deploys a Linux VM, using the latest patched version.",
+  "githubUsername": "svijaya",
+  "dateUpdated": "2018-02-28"
 }
