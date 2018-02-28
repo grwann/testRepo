@@ -1,0 +1,50 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"newLabName": {
+			"type": "String",
+			"metadata": {
+				"description": "The name of the new lab instance to be created"
+			}
+		}
+	},
+	"variables": {
+		"labVirtualNetworkName": "[concat('Dtl', parameters('newLabName'))]"
+	},
+	"resources": [{
+			"type": "Microsoft.DevTestLab/labs",
+			"name": "[parameters('newLabName')]",
+			"apiVersion": "2017-04-26-preview",
+			"location": "[resourceGroup().location]",
+			"resources": [{
+				"type": "virtualNetworks",
+				"name": "[variables('labVirtualNetworkName')]",
+				"apiVersion": "2017-04-26-preview",
+				"dependsOn": [
+					"[resourceId('Microsoft.DevTestLab/labs', parameters('newLabName'))]"
+				]
+			}]
+		},
+		{
+			"name": "[parameters('newLabName')]",
+			"type": "Microsoft.Insights/components",
+			"location": "Central US",
+			"apiVersion": "2014-04-01",
+			"tags": {
+				"displayName": "[parameters('newLabName')]"
+			},
+			"properties": {
+				"applicationId": "[parameters('newLabName')]"
+			}
+		}
+
+	],
+	"outputs": {
+		"labId": {
+			"type": "String",
+			"value": "[resourceId('Microsoft.DevTestLab/labs', parameters('newLabName'))]"
+		}
+	}
+
+}
