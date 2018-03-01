@@ -1,16 +1,24 @@
 {
-	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
 	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"aiName": {
+			"type": "string",
+			"metadata": {
+				"description": "Name of ai instance."
+			}
+		}
+	},
 	"resources": [{
 		"type": "Microsoft.Insights/components",
-		"name": "sandhyaai1",
+		"name": "[parameters('aiName')]",
 		"apiVersion": "2014-04-01",
 		"location": "West US2",
 		"tags": {
-			"displayName": "sandhyaai3"
+			"displayName": "[parameters('aiName')]"
 		},
 		"properties": {
-			"applicationId": "sandhyaai3"
+			"applicationId": "[parameters('aiName')]"
 		}
 	}],
 	"outputs": {}
