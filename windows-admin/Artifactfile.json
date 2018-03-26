@@ -36,7 +36,7 @@
             "commandToExecute": ""
         },
         "protectedSettings": {
-            "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"&', ' ./', parameters('scriptToRun'), ' ', parameters('scriptArguments'), '\"', '-Verb RunAs')]"
+            "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"&', ' ./', parameters('scriptToRun'), ' ', parameters('scriptArguments'), '\"')]"
         }
     }
 }
