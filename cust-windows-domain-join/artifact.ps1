@@ -42,19 +42,28 @@ function Add-VmToDomain ()
     }
     else
     {
-        $credential = New-Object System.Management.Automation.PSCredential($JoinUser, $JoinPassword)
-        if($OU) {   
-            [Microsoft.PowerShell.Commands.ComputerChangeInfo]$computerChangeInfo = Add-Computer -ComputerName $VmName -DomainName $DomainName -Credential $credential -OUPath $OU -Force -PassThru
-        } else {
-            [Microsoft.PowerShell.Commands.ComputerChangeInfo]$computerChangeInfo = Add-Computer -ComputerName $VmName -DomainName $DomainName -Credential $credential -Force -PassThru
+        Try {
+            $credential = New-Object System.Management.Automation.PSCredential($JoinUser, $JoinPassword)
+            if($OU) {   
+                [Microsoft.PowerShell.Commands.ComputerChangeInfo]$computerChangeInfo = Add-Computer -ComputerName $VmName -DomainName $DomainName -Credential $credential -OUPath $OU -Force -PassThru
+            } else {
+                [Microsoft.PowerShell.Commands.ComputerChangeInfo]$computerChangeInfo = Add-Computer -ComputerName $VmName -DomainName $DomainName -Credential $credential -Force -PassThru
+            }
+            if ($computerChangeInfo.HasSucceeded)
+            {
+                Write-Output "Result: Successfully joined the $DomaintoJoin domain"
+            }
+            else
+            {
+                Write-Error "Result: Failed to join $env:COMPUTERNAME to $DomaintoJoin domain"
+            }
         }
-        if ($computerChangeInfo.HasSucceeded)
-        {
-            Write-Output "Result: Successfully joined the $DomaintoJoin domain"
-        }
-        else
-        {
-            Write-Error "Result: Failed to join $env:COMPUTERNAME to $DomaintoJoin domain"
+        Catch {
+            $ErrorMessage = $_.Exception.Message
+            $FailedItem = $_.Exception.ItemName
+
+            Write-Output $ErrorMessage
+            Write-Output $FailedItem
         }
     }
 }
