@@ -22,8 +22,5 @@
       "displayName": "Domain suffix for NIC",
       "description": "The domain FQDN the the VM is being joined to."
     }
-  },  
-  "runCommand": {
-    "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./AzureDevTest_DNS_init.ps1', ' -DNSservers ''', parameters('DNSservers'), ''' -suffixsearchlist ''', parameters('suffixsearchlist'), ''' -suffix ', parameters('suffix'), '''\"')]"
-  },
+  }
 }
