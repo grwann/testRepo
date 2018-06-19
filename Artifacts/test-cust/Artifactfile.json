@@ -6,6 +6,23 @@
   "tags": ["Vaultex"],
   "iconUri": "https://avatars3.githubusercontent.com/u/40204130?s=200&v=4",
   "targetOsType": "Windows",
+  "parameters": {
+    "DNSservers": {
+      "type": "string",
+      "displayName": "DNS Server IP Addresses",
+      "description": "IP address of one or two DNS servers for the domain to join."
+    },
+    "suffixsearchlist": {
+      "type": "string",
+      "displayName": "DNS suffix search list",
+      "description": "One or more suffixes to search, including the domain FQDN that the VM is being joined to."
+    },
+    "suffix": {
+      "type": "string",
+      "displayName": "Domain suffix for NIC",
+      "description": "The domain FQDN the the VM is being joined to."
+    }
+  },  
     "runCommand": {
         "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./startChocolatey.ps1 -PackageList ', 'sublimetext3', '\"']"
     }
