@@ -22,5 +22,5 @@
       "displayName": "Domain suffix for NIC",
       "description": "The domain FQDN the the VM is being joined to."
     }
-  }
+  },
 }
