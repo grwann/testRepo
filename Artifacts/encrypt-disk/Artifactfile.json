@@ -7,8 +7,13 @@
         "Windows"
     ],
     "targetOsType": "Windows",
-    "parameters": {},
+    "parameters": {
+        "vmPassword": {
+            "type": "string",
+            "displayName": "VM password"
+        }
+    }
     "runCommand": {
-      "commandToExecute": "powershell.exe -ExecutionPolicy bypass \"& ./encrypt.ps1\""
+      "commandToExecute": "powershell.exe -ExecutionPolicy bypass \"& ./encrypt.ps1\" -vmPassword ''', parameters('vmPassword') "
     }
   }
