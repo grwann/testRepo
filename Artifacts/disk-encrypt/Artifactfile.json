@@ -1,6 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
-    "title": "CPU - Windows - Run Azure Disk Encryption extension",
+    "title": "grace - CPU - Windows - Run Azure Disk Encryption extension",
     "description": "Runs the AzureDiskEncryption extension to encrypt the disks on the VM.",
     "tags": [
         "Windows"
@@ -29,8 +29,8 @@
         "typeHandlerVersion": "1.1",
         "autoUpgradeMinorVersion": false,
         "settings": {
-            "AADClientID": "[parameters('userName')]",
-            "KeyVaultURL": "[parameters('keyVaultURL')]",
+            "AADClientID": "da179a12-9f05-4cf3-aef7-c68187f2054f",
+            "KeyVaultURL": "https://encrypt-keyvault.vault.azure.net",
             "EncryptionOperation": "EnableEncryption",
             "VolumeType":"All"
         },
