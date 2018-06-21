@@ -14,6 +14,6 @@
         }
     }
     "runCommand": {
-      "commandToExecute": "powershell.exe -ExecutionPolicy bypass \"& ./encrypt.ps1\" -vmPassword ''', parameters('vmPassword') "
+        "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./encrypt.ps1 -vmPassword ''', parameters('vmPassword'), '''\"')]"
     }
   }
