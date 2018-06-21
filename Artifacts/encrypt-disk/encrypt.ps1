@@ -1,6 +1,6 @@
 $keyVaultRgName = "grace-rg"
 $keyVaultName = "grace-encrypt";
-$vmName = "test-encrypt5"
+$vmName = "test-encrypt4"
 $vmRgName = "grace-lab3759623017001"
 $key = "encrypt-key"
 $securePassword = ConvertTo-SecureString -String $vmPassword -AsPlainText -Force
