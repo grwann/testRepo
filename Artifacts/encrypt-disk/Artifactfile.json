@@ -12,7 +12,7 @@
             "type": "string",
             "displayName": "VM password"
         }
-    }
+    },
     "runCommand": {
         "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./encrypt.ps1 -vmPassword ''', parameters('vmPassword'), '''\"')]"
     }
