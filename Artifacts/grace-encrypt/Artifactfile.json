@@ -1,0 +1,19 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
+    "title": "Encrypt disk",
+    "description": "Encrypt disks",
+    "publisher": "Microsoft",
+    "tags": [
+        "Windows"
+    ],
+    "targetOsType": "Windows",
+    "parameters": {
+        "aadPassword": {
+            "type": "string",
+            "displayName": "AAD password"
+        }
+    },
+    "runCommand": {
+        "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./encrypt.ps1 -aadPassword ''', parameters('aadPassword'), '''\"')]"
+    }
+  }
