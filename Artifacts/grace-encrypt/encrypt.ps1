@@ -2,7 +2,7 @@ Install-Module -name AzureRM -Scope CurrentUser
 
 $keyVaultRgName = "grace-rg"
 $keyVaultName = "encrypt-kv";
-$vmName = "encrypt-big02"
+$vmName = "encrypt-big03"
 $vmRgName = "grace-lab3759623017001"
 $key = "myKEK"
 $aadClientId = "da179a12-9f05-4cf3-aef7-c68187f2054f"
