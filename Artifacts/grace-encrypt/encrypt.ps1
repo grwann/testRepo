@@ -5,9 +5,12 @@ param(
 
 Write-Output $aadPassword
 
-Install-Module -name AzureRM -Scope CurrentUser
-
-Write-Output "installed module"
+try {
+    Install-Module -name AzureRM -Scope CurrentUser
+}
+catch {
+    Write-Output "bad"
+}
 
 #$keyVaultRgName = "grace-rg"
 #$keyVaultName = "encrypt-kv";
