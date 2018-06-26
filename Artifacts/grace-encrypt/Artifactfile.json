@@ -9,7 +9,7 @@
     "targetOsType": "Windows",
     "parameters": {
         "aadPassword": {
-            "type": "string",
+            "type": "securestring",
             "displayName": "AAD password"
         }
     },
