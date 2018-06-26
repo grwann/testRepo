@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [string] $aadPassword,
+    [string] $aadPassword
 )
 
 Write-Output $aadPassword
