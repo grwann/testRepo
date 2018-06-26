@@ -1,3 +1,8 @@
+[CmdletBinding()]
+param(
+    [string] $aadPassword,
+)
+
 Write-Output $aadPassword
 
 #Install-Module -name AzureRM -Scope CurrentUser
