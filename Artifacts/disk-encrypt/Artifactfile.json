@@ -21,7 +21,11 @@
             "type": "string",
             "displayName": "Key Vault URL",
             "description": "Key Vault URL e.g https://keyvaultname.vault.azure.net"
-        }
+        },
+        "keyEncryptionKeyURL": {
+            "type": "string",
+            "displayName": "Key Encryption Key URL"
+        }        
     },
     "runAzureVMExtension": {
         "publisher": "Microsoft.Azure.Security",
@@ -31,7 +35,9 @@
         "settings": {
             "AADClientID": "[parameters('appId')]",
             "KeyVaultURL": "[parameters('keyVaultURL')]",
+            "KeyEncryptionKeyURL": "[parameters('keyEncryptionKeyURL')]",
             "EncryptionOperation": "EnableEncryption",
+            "KeyEncryptionAlgorithm": "RSA-OAEP",
             "VolumeType":"All"
         },
         "protectedSettings": {
