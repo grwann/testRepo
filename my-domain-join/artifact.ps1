@@ -65,6 +65,9 @@ function Join-Domain
         [string] $OUPath
     )
 
+Write-Host "Username is $UserName"
+Write-Host "Password is $Password"
+
     if ((Get-WmiObject Win32_ComputerSystem).Domain -eq $DomainName)
     {
         Write-Host "Computer $($Env:COMPUTERNAME) is already joined to domain $DomainName."
