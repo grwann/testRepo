@@ -66,7 +66,9 @@ function Join-Domain
     )
 
 Write-Host "Username is $UserName"
-Write-Host "Password is $Password"
+$BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($securePass)
+$UnsecurePassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+Write-Host "Password is $UnsecurePassword"
 
     if ((Get-WmiObject Win32_ComputerSystem).Domain -eq $DomainName)
     {
