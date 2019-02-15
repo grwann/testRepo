@@ -24,7 +24,7 @@
       "value": "grwann"
     },
     "password": {
-      "value": "[[mySecret]]"
+      "value": null
     },
     "labVirtualNetworkName": {
       "value": "Dtlgrace-lab"
