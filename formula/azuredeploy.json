@@ -1,0 +1,78 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "existingLabName": {
+            "type": "String"
+        },
+        "formulaName": {
+            "type": "String"
+        },
+        "vmOffer": {
+            "type": "String"
+        },
+        "vmPublisher": {
+            "type": "String"
+        },
+        "vmSku": {
+            "type": "String"
+        },
+        "vmSize": {
+            "type": "String"
+        },
+        "username": {
+            "type": "String"
+        },
+        "password": {
+            "type": "SecureString"
+        },
+        "labVirtualNetworkName": {
+            "type": "String"
+        },
+        "labSubnetName": {
+            "type": "String"
+        }
+    },
+    "variables": {
+        "labVirtualNetworkId": "[concat('/virtualnetworks/', parameters('labVirtualNetworkName'))]",
+        "ostype": "windows",
+        "repositoryName": "public repo",
+        "artifactsFolder": "artifacts",
+        "vsCodeArtifactName": "[concat(variables('ostype'), '-vscode')]",
+        "enableAdminsArtifactName": "[concat(variables('ostype'), '-enable-local-admins')]"
+    },
+    "resources": [
+        {
+            "type": "microsoft.devtestlab/labs/formulas",
+            "name": "[concat(parameters('existingLabName'), '/', parameters('formulaName'))]",
+            "apiVersion": "2018-10-15-preview",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "description": "Formula for Windows VM.",
+                "ostype": "[variables('ostype')]",
+                "formulacontent": {
+                    "properties": {
+                        "size": "[parameters('vmSize')]",
+                        "username": "[parameters('username')]",
+                        "password": "[parameters('password')]",
+                        "labsubnetname": "[parameters('labSubnetName')]",
+                        "labvirtualnetworkid": "[variables('labVirtualNetworkId')]",
+                        "galleryimagereference": {
+                            "offer": "[parameters('vmOffer')]",
+                            "publisher": "[parameters('vmPublisher')]",
+                            "sku": "[parameters('vmSku')]",
+                            "ostype": "[variables('ostype')]",
+                            "version": "latest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "outputs": {
+        "formulaId": {
+            "type": "String",
+            "value": "[resourceId('Microsoft.DevTestLab/labs/formulas', parameters('existingLabName'), parameters('formulaName'))]"
+        }
+    }
+}
