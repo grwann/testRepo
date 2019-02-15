@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "existingLabName": {
+      "value": "grace-lab"
+    },
+    "formulaName": {
+      "value": "test-password2"
+    },
+    "vmOffer": {
+      "value": "Windows-10"
+    },
+    "vmPublisher": {
+      "value": "MicrosoftWindowsDesktop"
+    },
+    "vmSku": {
+      "value": "rs4-pron"
+    },
+    "vmSize": {
+      "value": "Standard_B8ms"
+    },
+    "username": {
+      "value": "grwann"
+    },
+    "password": {
+      "value": "[[mySecret]]"
+    },
+    "labVirtualNetworkName": {
+      "value": "Dtlgrace-lab"
+    },
+    "labSubnetName": {
+      "value": "Dtlgrace-labSubnet"
+    }
+  }
+}
