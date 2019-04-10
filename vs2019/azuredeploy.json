@@ -145,7 +145,7 @@
                     "imageReference": {
                         "publisher": "microsoftvisualstudio",
                         "offer": "visualstudio2019",
-                        "sku": "vs-2019-comm-win10-n",
+                        "sku": "vs-2019-comm-ws2016",
                         "version": "latest"
                     }
                 },
