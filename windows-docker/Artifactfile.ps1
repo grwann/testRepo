@@ -297,7 +297,7 @@ try
             # Windows Server 2016
             if ((Get-WindowsFeature -Name Hyper-V | select -ExpandProperty InstallState) -eq "Available")
             {
-                Install-WindowsFeature –Name Hyper-V -IncludeManagementTools | Out-Null
+                Install-WindowsFeature -Name Hyper-V -IncludeManagementTools | Out-Null
             }            
 
             # use the pre version of docker for windows to ensure windows server 2016 support and disable checksum checks (checksum is always outdated in the nuget package)
