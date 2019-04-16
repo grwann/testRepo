@@ -331,7 +331,7 @@ try
 
         } else {
 
-            $message = "Could not find Docker installation path '$dockerPath'."
+            $message = "Could not find Docker installation path '$dockerPath'"
             throw $message
         }
     }    
