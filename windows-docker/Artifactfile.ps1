@@ -330,8 +330,7 @@ try
             Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "Docker for Windows" -Value (Join-Path $dockerPath "Docker\Docker for Windows.exe")
 
         } else {
-
-            $message = "Could not find Docker installation path '$dockerPath'"
+            $message = "Could not find Docker installation path '$dockerPath'."
             throw $message
         }
     }    
