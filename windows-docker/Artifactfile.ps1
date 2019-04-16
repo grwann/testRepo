@@ -314,6 +314,8 @@ try
 
             if ((Test-Path -Path $dockerPath -PathType Container) -and (Test-Path -Path $kitematicPath -PathType Container)) {
 
+                Write-Output "kitematicPath:" $kitematicPath
+                Write-Output "dockerPath:" $dockerPath
                 # redirect default kitematic folder under docker to the chocolatey package folder 
                 New-Item -Path (Join-Path $dockerPath "Kitematic") -ItemType SymbolicLink -Target $kitematicPath | Out-Null
             }
