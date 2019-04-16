@@ -327,7 +327,7 @@ try
             }
 
             # ensure docker 4 windows autostart for the very first login
-            Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "Docker for Windows" -Value (Join-Path $dockerPath "Docker\Docker for Windows.exe")
+            Set-ItemProperty 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name 'Docker for Windows' -Value (Join-Path $dockerPath 'Docker\Docker for Windows.exe')
 
         } else 
         {
