@@ -26,7 +26,7 @@ function Handle-LastError
     $message = $error[0].Exception.Message
     if ($message)
     {
-        Write-Host -Object "ERROR: $message" -ForegroundColor Red
+        Write-Host -Object 'ERROR: $message' -ForegroundColor Red
     }
     
     # IMPORTANT NOTE: Throwing a terminating error (using $ErrorActionPreference = "Stop") still
@@ -42,8 +42,8 @@ function Validate-Environment
     param(
     )
 
-    $minVersionServer = [System.Version]::Parse("10.0.14393.0")
-    $minVersionClient = [System.Version]::Parse("10.0.14393.222")
+    $minVersionServer = [System.Version]::Parse('10.0.14393.0')
+    $minVersionClient = [System.Version]::Parse('10.0.14393.222')
 
     $productType = Get-CimInstance Win32_OperatingSystem | select -ExpandProperty ProductType
 
@@ -63,7 +63,7 @@ function Validate-Environment
     
     if ($curVersion -lt $minVersion) {
 
-        throw "OS version must at least Windows 10 ($minVersionClient) or Windows Server 2016 ($minVersionServer)."
+        throw 'OS version must at least Windows 10 ($minVersionClient) or Windows Server 2016 ($minVersionServer).'
     }
 }
 
@@ -95,7 +95,7 @@ function Ensure-PowerShell
 
     if ($PSVersionTable.PSVersion.Major -lt $Version)
     {
-        throw "The current version of PowerShell is $($PSVersionTable.PSVersion.Major). Prior to running this artifact, ensure you have PowerShell $Version or higher installed."
+        throw 'The current version of PowerShell is $($PSVersionTable.PSVersion.Major). Prior to running this artifact, ensure you have PowerShell $Version or higher installed.'
     }
 }
 
@@ -105,7 +105,7 @@ function Get-VMSize
     param (
     )
 
-    $vmSize = Invoke-RestMethod -Headers @{"Metadata"="true"} -URI "http://169.254.169.254/metadata/instance/compute/vmSize?api-version=2017-04-02&format=text" -Method Get
+    $vmSize = Invoke-RestMethod -Headers @{'Metadata'='true'} -URI 'http://169.254.169.254/metadata/instance/compute/vmSize?api-version=2017-04-02&format=text' -Method Get
     
     return $vmSize
 }
@@ -121,7 +121,7 @@ function Test-NestedVirtualizationSupport
     # CAUTION !!!
     # There's no reliable way other than using the VMSize to identify support for nested virtualization yet!
     
-    return [bool] ($vmSize -match "Standard_[D|E]{1}\d{1,2}[s]?_v3")
+    return [bool] ($vmSize -match 'Standard_[D|E]{1}\d{1,2}[s]?_v3')
 }
 
 function Get-TempPassword
@@ -154,14 +154,14 @@ function Add-LocalAdminUser
         Remove-LocalAdminUser -UserName $UserName
     }
 
-    $computer = [ADSI]"WinNT://$env:ComputerName"
-    $user = $computer.Create("User", $UserName)
+    $computer = [ADSI]'WinNT://$env:ComputerName'
+    $user = $computer.Create('User', $UserName)
     $user.SetPassword($Password)
-    $user.Put("Description", $Description)
+    $user.Put('Description', $Description)
     $user.SetInfo()
 
-    $group = [ADSI]"WinNT://$env:ComputerName/Administrators,group"
-    $group.add("WinNT://$env:ComputerName/$UserName")
+    $group = [ADSI]'WinNT://$env:ComputerName/Administrators,group'
+    $group.add('WinNT://$env:ComputerName/$UserName')
     
     return $user
 }
@@ -175,7 +175,7 @@ function Remove-LocalAdminUser
 
     if ([ADSI]::Exists('WinNT://./' + $UserName))
     {
-        $computer = [ADSI]"WinNT://$env:ComputerName"
+        $computer = [ADSI]'WinNT://$env:ComputerName'
         $computer.Delete('User', $UserName)
         try
         {
@@ -223,7 +223,7 @@ function Invoke-ChocolateyPackageInstaller
     )
 
     $secPassword = ConvertTo-SecureString -String $Password -AsPlainText -Force
-    $credential = New-Object System.Management.Automation.PSCredential("$env:COMPUTERNAME\$($UserName)", $secPassword)
+    $credential = New-Object System.Management.Automation.PSCredential('$env:COMPUTERNAME\$($UserName)', $secPassword)
     $command = "$PSScriptRoot\ChocolateyPackageInstaller.ps1"
 
     $oldPolicyValue = Set-LocalAccountTokenFilterPolicy
@@ -284,27 +284,27 @@ try
         if ($productType -eq 1)
         {
             # Windows 10
-            if ((Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V | select -ExpandProperty State) -eq "Disabled")
+            if ((Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V | select -ExpandProperty State) -eq 'Disabled')
             {
                 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
             }
 
             # use the GA version of docker for windows and disable checksum checks (checksum is always outdated in the nuget package)
-            Invoke-ChocolateyPackageInstaller -UserName $UserName -Password $Password -PackageList "docker-for-windows --ignore-checksums"
+            Invoke-ChocolateyPackageInstaller -UserName $UserName -Password $Password -PackageList 'docker-for-windows --ignore-checksums'
         }
         else 
         {
             # Windows Server 2016
-            if ((Get-WindowsFeature -Name Hyper-V | select -ExpandProperty InstallState) -eq "Available")
+            if ((Get-WindowsFeature -Name Hyper-V | select -ExpandProperty InstallState) -eq 'Available')
             {
                 Install-WindowsFeature –Name Hyper-V -IncludeManagementTools | Out-Null
             }            
 
             # use the pre version of docker for windows to ensure windows server 2016 support and disable checksum checks (checksum is always outdated in the nuget package)
-            Invoke-ChocolateyPackageInstaller -UserName $UserName -Password $Password -PackageList "docker-for-windows --ignore-checksums --pre"
+            Invoke-ChocolateyPackageInstaller -UserName $UserName -Password $Password -PackageList 'docker-for-windows --ignore-checksums --pre'
         }
 
-        $dockerPath = Join-Path $env:programfiles "docker"
+        $dockerPath = Join-Path $env:programfiles 'docker'
 
         if (Test-Path -Path $dockerPath -PathType Container) {
 
