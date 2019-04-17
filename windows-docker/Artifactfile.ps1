@@ -314,7 +314,8 @@ try
 
             if ((Test-Path -Path $dockerPath -PathType Container) -and (Test-Path -Path $kitematicPath -PathType Container)) {
 
-                Write-Output "-Path: '(Join-Path $dockerPath "Kitematic")'"
+                $path = Join-Path $dockerPath "Kitematic"
+                Write-Output "-Path: '$path'"
                 Write-Output "-Target: '$kitematicPath'"
                 
                 # redirect default kitematic folder under docker to the chocolatey package folder 
