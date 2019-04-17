@@ -322,14 +322,21 @@ try
                 New-Item -Path (Join-Path $dockerPath "Kitematic") -ItemType SymbolicLink -Target $kitematicPath -Force | Out-Null
             }
             
+            Write-Output "here 1"
+            
             $dockerGroup = ([ADSI]"WinNT://$env:ComputerName/docker-users,group")
 
+            Write-Output "here 2"
+            
             if ($dockerGroup)
             {
+                Write-Output "here 3"
+                
                 # grant local users to docker-for-windows
                 ([ADSI]"WinNT://$env:ComputerName").Children | ? { $_.SchemaClassName -eq 'user' } | % { try { $dockerGroup.add($_.Path) } catch {} }
             }
 
+            Write-Output "here 4"
             # ensure docker 4 windows autostart for the very first login
             Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "Docker for Windows" -Value (Join-Path $dockerPath "Docker\Docker for Windows.exe")
 
