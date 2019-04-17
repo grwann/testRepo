@@ -314,14 +314,14 @@ try
 
             if ((Test-Path -Path $dockerPath -PathType Container) -and (Test-Path -Path $kitematicPath -PathType Container)) {
 
-                $path = Join-Path $dockerPath "Kitematic"
-                Write-Output "-Path: '$path'"
+                $dockerPathToKitematic = Join-Path $dockerPath "Kitematic"
+                Write-Output "-Path: '$dockerPathToKitematic'"
                 Write-Output "-Target: '$kitematicPath'"
 
                 # redirect default kitematic folder under docker to the chocolatey package folder 
                 # do Remove-Item first because we get 'ERROR: The directory is not empty.' otherwise
-                Remove-Item Join-Path $dockerPath "Kitematic" -Force -Recurse
-                New-Item -Path (Join-Path $dockerPath "Kitematic") -ItemType SymbolicLink -Target $kitematicPath -Force | Out-Null
+                Remove-Item -Path $dockerPathToKitematic -Force -Recurse
+                New-Item -Path $dockerPathToKitematic -ItemType SymbolicLink -Target $kitematicPath -Force | Out-Null
             }
             
             Write-Output "here 1"
