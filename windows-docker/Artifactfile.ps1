@@ -315,11 +315,17 @@ try
             if ((Test-Path -Path $dockerPath -PathType Container) -and (Test-Path -Path $kitematicPath -PathType Container)) {
 
                 $path = Join-Path $dockerPath "Kitematic"
-                # Write-Output "-Path: '$path'"
-                # Write-Output "-Target: '$kitematicPath'"
+                Write-Output "-Path: '$path'"
+                Write-Output "-Target: '$kitematicPath'"
 
-                # redirect default kitematic folder under docker to the chocolatey package folder 
-                # New-Item -Path (Join-Path $dockerPath "Kitematic") -ItemType SymbolicLink -Target $kitematicPath -Force | Out-Null
+                Try {
+                    # redirect default kitematic folder under docker to the chocolatey package folder 
+                    New-Item -Path (Join-Path $dockerPath "Kitematic") -ItemType SymbolicLink -Target $kitematicPath -Force | Out-Null
+                }
+                Catch {
+                    Write-Output "Trying to create SymbolicLink failed"
+                }
+
             }
             
             Write-Output "here 1"
