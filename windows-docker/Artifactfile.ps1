@@ -317,15 +317,9 @@ try
                 $path = Join-Path $dockerPath "Kitematic"
                 Write-Output "-Path: '$path'"
                 Write-Output "-Target: '$kitematicPath'"
-                
-                Try {
-                    # redirect default kitematic folder under docker to the chocolatey package folder 
-                    New-Item -Path (Join-Path $dockerPath "Kitematic") -ItemType SymbolicLink -Target $kitematicPath | Out-Null
-                }
-                Catch {
-                    $myError = $_.Exception.Message
-                    Write-Output $myError
-                }
+
+                # redirect default kitematic folder under docker to the chocolatey package folder 
+                New-Item -Path (Join-Path $dockerPath "Kitematic") -ItemType SymbolicLink -Target $kitematicPath -Force | Out-Null
             }
             
             $dockerGroup = ([ADSI]"WinNT://$env:ComputerName/docker-users,group")
