@@ -318,14 +318,10 @@ try
                 Write-Output "-Path: '$path'"
                 Write-Output "-Target: '$kitematicPath'"
 
-                Try {
-                    # redirect default kitematic folder under docker to the chocolatey package folder 
-                    New-Item -Path (Join-Path $dockerPath "Kitematic") -ItemType SymbolicLink -Target $kitematicPath -Force | Out-Null
-                }
-                Catch {
-                    Write-Output "Trying to create SymbolicLink failed"
-                }
-
+                # redirect default kitematic folder under docker to the chocolatey package folder 
+                # do Remove-Item first because we get 'ERROR: The directory is not empty.' otherwise
+                Remove-Item (Join-Path $dockerPath "Kitematic")
+                New-Item -Path (Join-Path $dockerPath "Kitematic") -ItemType SymbolicLink -Target $kitematicPath -Force | Out-Null
             }
             
             Write-Output "here 1"
