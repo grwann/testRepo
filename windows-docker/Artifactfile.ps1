@@ -320,7 +320,7 @@ try
 
                 # redirect default kitematic folder under docker to the chocolatey package folder 
                 # do Remove-Item first because we get 'ERROR: The directory is not empty.' otherwise
-                Remove-Item (Join-Path $dockerPath "Kitematic")
+                Remove-Item Join-Path $dockerPath "Kitematic" -Force -Recurse
                 New-Item -Path (Join-Path $dockerPath "Kitematic") -ItemType SymbolicLink -Target $kitematicPath -Force | Out-Null
             }
             
