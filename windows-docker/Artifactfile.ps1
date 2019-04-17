@@ -323,8 +323,8 @@ try
                     New-Item -Path (Join-Path $dockerPath "Kitematic") -ItemType SymbolicLink -Target $kitematicPath | Out-Null
                 }
                 Catch {
-                    $error = $_.Exception.Message
-                    Write-Output $error
+                    $myError = $_.Exception.Message
+                    Write-Output $myError
                 }
             }
             
